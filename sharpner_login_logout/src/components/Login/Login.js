@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
@@ -14,25 +14,34 @@ const Login = (props) => {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
+  useEffect(()=>{
+    setFormIsValid(
+      enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollage.trim().length > 3
+    );
+  },[enteredEmail,enteredPassword,enteredCollage]) //if one of thise dependency changes only when this useEffect will trigur okkk...
+
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
-    setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6 && enteredCollage.trim().length > 3
-    );
+// belove valid checking logic we moved into useEffect because this is like a side effect and also reapeating a code
+    // setFormIsValid(
+    //   event.target.value.includes('@') && enteredPassword.trim().length > 6 && enteredCollage.trim().length > 3
+    // );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
-    setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@') && enteredCollage.trim().length > 3
-    );
+// belove valid checking logic we moved into useEffect because this is like a side effect and also reapeating a code
+    // setFormIsValid(
+    //   event.target.value.trim().length > 6 && enteredEmail.includes('@') && enteredCollage.trim().length > 3
+    // );
   };
   
   const collageChangeHandler = (event) => {
     setEnteredCollage(event.target.value);
-    setFormIsValid(
-      event.target.value.trim().length > 3 && enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    );
+// belove valid checking logic we moved into useEffect because this is like a side effect and also reapeating a code    
+    // setFormIsValid(
+    //   event.target.value.trim().length > 3 && enteredEmail.includes('@') && enteredPassword.trim().length > 6
+    // );
   };
 
   const validateEmailHandler = () => {
