@@ -17,7 +17,7 @@ const Login = (props) => {
   // we want that we will not check the validation in every keystrock instead of this we want to check validation when the user stops the typing this will encrease the performance of app so ...
   // we use settimeout() function that will wait for a 500 sec. to executes butt this will always triger when user type so we want only 1 time this timeout function will run so here we use the Debouncing and clean up using  clearTimeOut() function
   useEffect(()=>{
-    const timerValid = setTimeout(()=>{ // this will run only very first time after this will not run
+    const timerValid = setTimeout(()=>{ // this will run only very first time after this will run but cleared by the clearTimeOut function ...
       setFormIsValid(
       enteredEmail.includes('@') && enteredPassword.trim().length > 6 && enteredCollage.trim().length > 3
     )},500)
